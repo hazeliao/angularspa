@@ -1,0 +1,122 @@
+<!doctype html>
+<!-- This actually signals that our website is actually an SPA, Angular app -->
+<html ng-app="app" ng-controller="MainCtrl">
+<head>
+	<!-- This is required to display Ä and Ö etc. letters properly -->
+	<meta charset="utf-8">
+
+	<!-- Add Angular as it is the core of our project. -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <script type="text/javascript" src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-route.js'></script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Add Bootstrap for cool buttons & stuff -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="style.css">
+	<!-- Here is the actual Single Page Application itself -->
+	<script src="app.js"></script>
+	<script src="home/HomeController.js"></script>
+	<script src="login/LoginController.js"></script>
+	<script src="aboutus/AboutUsController.js"></script>
+	<script src="register/RegisterController.js"></script>
+	<script src="checkout/CheckoutController.js"></script>
+	<script src="userinfo/UserInfoController.js"></script>
+
+	<script>
+        function showResponsive() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+	</script>
+</head>
+<body>
+
+	<!-- <button type="button" style="float:right; margin: 32px;" class="btn btn-default btn-lg">
+		<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+	</button>
+	-->
+	<!--
+	<div class="dropdown">
+		<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+			Subject
+			<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li><a href="#">Physicsa</li>
+				<li><a href="#">Matha</li>
+				<li><a href="#">Chemistrya</li>
+				<li><a href="#">Hindia</li>
+			</ul>
+	</div>
+	-->
+	<ul class="topnav" id="myTopnav">
+		<li ng-class="{ 'activeListElement': isActive('/home')}">
+			<a href="#!/home">
+				<span class="glyphicon glyphicon-home" aria-hidden="true"></span> Shop
+			</a>
+		</li>
+		<li ng-class="{ 'activeListElement': isActive('/aboutus')}">
+			<a href="#!/aboutus">
+				<span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> About Us
+			</a>
+		</li>
+		<div ng-if="isLoggedIn != true">
+			<li ng-class="{ 'activeListElement': isActive('/login')}">
+				<a href="#!/login">
+					<span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Login
+				</a>
+			</li>
+			<li ng-class="{ 'activeListElement': isActive('/register')}">
+				<a href="#!/register">
+					<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Register
+				</a>
+			</li>
+		</div>
+
+		<li>
+			<a href="#!/checkout">
+				<span style="color: #fff;" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Checkout
+				<span ng-show="itemsInCart > 0" style="color: #ff0000; margin-top:-2.0em;" class="badge">{{itemsInCart}}</span>
+			</a>
+		</li>
+
+		<div ng-show="isLoggedIn == true">
+			<li>
+				<a href="#!/userinfo">
+					<span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{userName}}
+				</a>
+			</li>
+
+			<li>
+				<a href="" ng-click="doLogout();">
+					<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Logout
+				</a>
+			</li>
+		</div>
+
+		<li class="icon">
+			<a href="javascript:void(0);" onclick="showResponsive()">&#9776;</a>
+		</li>
+	</ul>
+
+
+	<!--
+	Debug Menu
+	<a href="#!/home">home</a>
+	<a href="#!/login">login</a>
+	-->
+
+	<!-- This is what will be replaced by all the views of the SPA -->
+	<div ng-view></div>
+</body>

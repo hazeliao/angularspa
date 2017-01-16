@@ -1,0 +1,32 @@
+<div class="panel panel-default viewTitleStyle">
+    <h1>{{viewTitle}}</h1>
+</div>
+
+<div style="width: 100%;">
+    <!-- Note: This allows for duplicates: "product in products track by $index" -->
+    <div ng-repeat="product in products">
+        <div style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 4px 4px 0 rgba(0, 0, 0, 0.1);" class="panel panel-default" style="padding:16px;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <div style="margin-top: 10%; margin-bottom: 10%;">
+                        <button ng-click="addToCart($index)" type="button" class="btn btn-default btn-lg">
+                            <span class="glyphicon glyphicon-usd"></span>
+                            Buy
+                        </button>
+                        <span ng-bind="product.Name"></span> for
+                        <strong><span ng-bind="product.Price"></span> $</strong>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <img class="responsiveProductImages" title="Product Info In Tooltip!" data-toggle="tooltip" data-placement="right" tooltip ng-src="{{product.Image}}"/>
+                </div>
+                <!-- use col-xs-0 here to row it under the image -->
+                <div class="col-xs-0 col-sm-4 col-md-4 col-lg-4">
+                    <span style="float: right;">Made in {{product.Country}}</span>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>

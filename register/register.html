@@ -1,0 +1,41 @@
+<div class="panel panel-default viewTitleStyle">
+    <h1>{{viewTitle}}</h1>
+</div>
+
+<style type="text/css">
+    .css-form input.ng-invalid.ng-touched {
+        background-color: #c86c6e;
+    }
+
+    .css-form input.ng-valid.ng-touched {
+        background-color: #77db75;
+    }
+</style>
+
+<div class="panel panel-default contentPanelStyle" >
+<form name="registerform" novalidate class="css-form" ng-submit="submit()">
+
+    <div class="form-group">
+        <label for="inputdefault">First name:</label>
+        <span ng-show="registerform.fnameField.$touched && registerform.fnameField.$invalid" style="color: #ff0000;">* First name is required.</span>
+        <input id="inputdefault" type="text" name="fnameField" class="form-control" ng-model="firstname" required />
+        <br />
+        <label for="inputdefault2">Last name:</label>
+        <span ng-show="registerform.lnameField.$touched && registerform.lnameField.$invalid" style="color: #ff0000;">* Last name is required.</span>
+        <input id="inputdefault2" type="text" name="lnameField" class="form-control" ng-model="lastname" required />
+        <br />
+        <label for="inputdefault3">E-mail:</label>
+        <span ng-show="registerform.emailField.$touched && registerform.emailField.$invalid" style="color: #ff0000;">* E-mail is required.</span>
+        <input id="inputdefault3" type="email" name="emailField" class="form-control"ng-model="useremail" required /></label>
+        <br />
+        <label for="inputdefaultPwd">Password:</label>
+        <span ng-show="registerform.pwdField.$touched && registerform.pwdField.$invalid" style="color: #ff0000;">* Password is invalid, can't be empty.</span>
+        <input id="inputdefaultPwd" type="password" name="pwdField" class="form-control"ng-model="userpassword" required /></label>
+        <br />
+        <!--<input type="button" ng-click="reset()" value="Reset" />-->
+        <input type="submit" id="submit" class="btn btn-success btn-lg" value="Register">
+    </div>
+</form>
+
+<pre>Debug Register Data={{list}}</pre>
+</div>

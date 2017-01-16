@@ -1,0 +1,40 @@
+<div class="panel panel-default viewTitleStyle">
+    <h1>{{viewTitle}}</h1>
+</div>
+
+<style type="text/css">
+    .css-form input.ng-invalid.ng-touched {
+        background-color: #FA787E;
+    }
+
+    .css-form input.ng-valid.ng-touched {
+        background-color: #78FA89;
+    }
+</style>
+
+<div class="panel panel-default contentPanelStyle" >
+
+    <form name="loginform" novalidate class="css-form" ng-submit="submit()">
+        <div class="form-group">
+            <label for="inputdefaultX">E-mail: </label>
+            <span ng-show="loginform.userNameField.$touched && loginform.userNameField.$invalid" style="color: #ff0000;">* E-mail is required.</span>
+            <input id="inputdefaultX" type="email" name="userNameField" class="form-control" ng-model="username" required />
+            <br />
+            <label for="inputdefaultY">Password:</label>
+            <span ng-show="loginform.pwdField.$touched && loginform.pwdField.$invalid" style="color: #ff0000;">* Password is invalid, can't be empty.</span>
+            <input id="inputdefaultY" type="password" name="pwdField" class="form-control"ng-model="userpassword" required /></label>
+            <br />
+            <!--<input type="button" ng-click="reset()" value="Reset" />-->
+            <input type="submit" id="submit" class="btn btn-success btn-lg" value="Login">
+        </div>
+    </form>
+
+    <div ng-show="loginFailed" ng-click="dismissError();" class="alert alert-danger alert-dismissable fade in">
+        <span class="close" aria-label="close">&times;</span>
+        <strong>Error:</strong> Login failed, username or password is not correct.
+    </div>
+
+    <div ng-show="isAdmin">
+        <pre>ADMIN TOOLS: Debug Login Data={{list}}</pre>
+    </div>
+</div>
